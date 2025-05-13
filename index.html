@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeatMarket – Купить и продать биты</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            width: 80%;
+            margin: 2rem auto;
+        }
+        .beat-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .beat-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            width: 30%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BeatMarket</h1>
+        <p>Продажа и покупка эксклюзивных битов</p>
+    </header>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="beats.html">Биты</a>
+        <a href="sell.html">Продать бит</a>
+        <a href="contact.html">Контакты</a>
+    </nav>
+    <div class="container">
+        <h2>Популярные биты</h2>
+        <div class="beat-list">
+            <div class="beat-card">
+                <h3>Trap Fire</h3>
+                <p>Жанр: Trap</p>
+                <p>Цена: $30</p>
+                <button>Купить</button>
+            </div>
+            <div class="beat-card">
+                <h3>RnB Vibes</h3>
+                <p>Жанр: RnB</p>
+                <p>Цена: $25</p>
+                <button>Купить</button>
+            </div>
+            <div class="beat-card">
+                <h3>Drill Type Beat</h3>
+                <p>Жанр: Drill</p>
+                <p>Цена: $40</p>
+                <button>Купить</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 BeatMarket. Все права защищены.</p>
+    </footer>
+</body>
+</html>

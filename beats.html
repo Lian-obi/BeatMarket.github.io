@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeatMarket – Каталог битов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            width: 80%;
+            margin: 2rem auto;
+            padding-bottom: 3rem; /* Чтобы footer не перекрывал контент */
+        }
+        .filters {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .beat-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .beat-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            width: 30%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .beat-card audio {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+        .beat-card button {
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .beat-card button:hover {
+            background: #333;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BeatMarket</h1>
+        <p>Каталог битов</p>
+    </header>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="beats.html">Биты</a>
+        <a href="sell.html">Продать бит</a>
+        <a href="contact.html">Контакты</a>
+    </nav>
+    <div class="container">
+        <div class="filters">
+            <h2>Фильтры</h2>
+            <select id="genre-filter">
+                <option value="all">Все жанры</option>
+                <option value="trap">Trap</option>
+                <option value="rnb">R&B</option>
+                <option value="drill">Drill</option>
+                <option value="hiphop">Hip-Hop</option>
+            </select>
+            <select id="price-filter">
+                <option value="all">Любая цена</option>
+                <option value="0-30">До $30</option>
+                <option value="30-50">$30–$50</option>
+                <option value="50+">От $50</option>
+            </select>
+            <button onclick="filterBeats()">Применить</button>
+        </div>
+        <div class="beat-list">
+            <div class="beat-card" data-genre="trap" data-price="25">
+                <h3>Trap Fire</h3>
+                <p>Жанр: Trap</p>
+                <p>Цена: <strong>$25</strong></p>
+                <audio controls>
+                    <source src="beat1.mp3" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудио.
+                </audio>
+                <button>Купить</button>
+            </div>
+            <div class="beat-card" data-genre="rnb" data-price="30">
+                <h3>RnB Vibes</h3>
+                <p>Жанр: R&B</p>
+                <p>Цена: <strong>$30</strong></p>
+                <audio controls>
+                    <source src="beat2.mp3" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудио.
+                </audio>
+                <button>Купить</button>
+            </div>
+            <div class="beat-card" data-genre="drill" data-price="40">
+                <h3>Drill Type Beat</h3>
+                <p>Жанр: Drill</p>
+                <p>Цена: <strong>$40</strong></p>
+                <audio controls>
+                    <source src="beat3.mp3" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудио.
+                </audio>
+                <button>Купить</button>
+            </div>
+            <div class="beat-card" data-genre="hiphop" data-price="50">
+                <h3>Old School Boom</h3>
+                <p>Жанр: Hip-Hop</p>
+                <p>Цена: <strong>$50</strong></p>
+                <audio controls>
+                    <source src="beat4.mp3" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудио.
+                </audio>
+                <button>Купить</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 BeatMarket. Все права защищены.</p>
+    </footer>
+
+    <script>
+        function filterBeats() {
+            const genreFilter = document.getElementById('genre-filter').value;
+            const priceFilter = document.getElementById('price-filter').value;
+            const beatCards = document.querySelectorAll('.beat-card');
+
+            beatCards.forEach(card => {
+                const genre = card.getAttribute('data-genre');
+                const price = parseInt(card.getAttribute('data-price'));
+                let shouldShow = true;
+
+                // Фильтр по жанру
+                if (genreFilter !== 'all' && genre !== genreFilter) {
+                    shouldShow = false;
+                }
+
+                // Фильтр по цене
+                if (priceFilter !== 'all') {
+                    if (priceFilter === '0-30' && price > 30) {
+                        shouldShow = false;
+                    } else if (priceFilter === '30-50' && (price <= 30 || price > 50)) {
+                        shouldShow = false;
+                    } else if (priceFilter === '50+' && price <= 50) {
+                        shouldShow = false;
+                    }
+                }
+
+                card.style.display = shouldShow ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

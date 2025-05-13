@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeatMarket - Продать свой бит</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 0.8rem 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 1.2rem;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        nav a:hover {
+            color: #1db954;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #1a1a1a;
+            border-bottom: 2px solid #1db954;
+            padding-bottom: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .file-upload {
+            border: 2px dashed #ccc;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .file-upload:hover {
+            border-color: #1db954;
+        }
+        button[type="submit"] {
+            background-color: #1db954;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #169c46;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            background-color: #1a1a1a;
+            color: white;
+            margin-top: 2rem;
+        }
+        .price-tiers {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .tier {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .tier h4 {
+            margin-top: 0;
+            color: #1db954;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BeatMarket</h1>
+        <p>Продайте свой бит тысячам исполнителей</p>
+    </header>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="beats.html">Биты</a>
+        <a href="sell.html">Продать бит</a>
+        <a href="contact.html">Контакты</a>
+    </nav>
+    <div class="container">
+        <h2>Загрузите свой бит</h2>
+        <form id="upload-form">
+            <div class="form-group">
+                <label for="beat-name">Название бита</label>
+                <input type="text" id="beat-name" name="beat-name" required placeholder="Например: 'Dark Trap Beat 2024'">
+            </div>
+            
+            <div class="form-group">
+                <label for="genre">Жанр</label>
+                <select id="genre" name="genre" required>
+                    <option value="">Выберите жанр</option>
+                    <option value="trap">Trap</option>
+                    <option value="drill">Drill</option>
+                    <option value="rnb">R&B</option>
+                    <option value="hiphop">Hip-Hop</option>
+                    <option value="pop">Pop</option>
+                    <option value="other">Другой</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="bpm">BPM</label>
+                <input type="number" id="bpm" name="bpm" min="60" max="200" placeholder="120">
+            </div>
+            
+            <div class="form-group">
+                <label for="price">Цена ($)</label>
+                <input type="number" id="price" name="price" min="5" max="500" step="5" required placeholder="30">
+            </div>
+            
+            <div class="form-group">
+                <label>Типы лицензий</label>
+                <div class="price-tiers">
+                    <div class="tier">
+                        <h4>Basic</h4>
+                        <p>Неэксклюзивная</p>
+                        <p>До 10,000 потоков</p>
+                    </div>
+                    <div class="tier">
+                        <h4>Premium</h4>
+                        <p>Неэксклюзивная</p>
+                        <p>До 100,000 потоков</p>
+                    </div>
+                    <div class="tier">
+                        <h4>Exclusive</h4>
+                        <p>Полные права</p>
+                        <p>Без ограничений</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <textarea id="description" name="description" rows="4" placeholder="Опишите особенности бита, настроение, возможное использование..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Загрузите файлы</label>
+                <div class="file-upload">
+                    <p>Перетащите сюда ваш .mp3 или .wav файл</p>
+                    <p>или</p>
+                    <input type="file" id="beat-file" name="beat-file" accept=".mp3,.wav" required>
+                </div>
+                <div class="file-upload">
+                    <p>Загрузите обложку (необязательно)</p>
+                    <input type="file" id="cover-image" name="cover-image" accept="image/*">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="tags">Теги (через запятую)</label>
+                <input type="text" id="tags" name="tags" placeholder="trap, dark, aggressive, 2024">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Ваш email</label>
+                <input type="email" id="email" name="email" required placeholder="Для уведомлений о продажах">
+            </div>
+            
+            <button type="submit">Опубликовать бит</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 BeatMarket. Все права защищены.</p>
+    </footer>
+
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Бит успешно загружен! После модерации он появится в каталоге.');
+            // Здесь можно добавить AJAX-запрос для реальной отправки данных
+            this.reset();
+        });
+    </script>
+</body>
+</html>
